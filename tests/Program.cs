@@ -1,0 +1,10 @@
+using DesktopSearch.Core;
+var engine=new Indexer();
+engine.Add("astronomy.txt","The orbital mechanics study uses a spacecraft and orbits.");
+engine.Add("hardware.txt","Circuit simulation and electrical networks.");
+engine.Add("biology.txt","Plants and fungi.");
+var hits=engine.Search("orbit mechanics");
+if(hits.Count==0||hits[0].Path!="astronomy.txt")throw new Exception("Search ranking failed");
+if(engine.Search("nomatch123").Count!=0)throw new Exception("Invalid zero-results query");
+if(Indexer.Tokenize("HELLO, hello").Length!=2)throw new Exception("Tokenization failed");
+Console.WriteLine("All indexing tests passed.");
